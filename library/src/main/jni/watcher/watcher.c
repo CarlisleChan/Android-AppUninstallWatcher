@@ -252,11 +252,11 @@ int main(int argc, char *argv[])
 		}
 
 		/* call url */
-		chttp_get(url);
 		chttp_post(url, device_id, imei, app_id, server_id, app_version);
 		/* open browser if needed */
 		if (should_open_browser)
 		{
+			LOGD(LOG_TAG, "open browser");
 			open_browser(url);
 		}
 

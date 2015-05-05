@@ -27,7 +27,7 @@ static size_t write_callback(void *contents, size_t size, size_t nmemb, void *us
  */
 void chttp_get(char *url)
 {
-	LOGD(LOG_TAG, "get", &url);
+	LOGD(LOG_TAG, "get", url);
 
 	CURL *curl;
 	CURLcode res;
@@ -35,10 +35,10 @@ void chttp_get(char *url)
 	curl = curl_easy_init();
 	if(curl)
 	{
-		curl_easy_setopt(curl, CURLOPT_URL, "http://www.baidu.com");
+		curl_easy_setopt(curl, CURLOPT_URL, url);
 		/* follow redirection */
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-//		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
 
 		/* perform the request, res will get the return code */
 		res = curl_easy_perform(curl);
@@ -58,11 +58,11 @@ void chttp_get(char *url)
 
 void chttp_post(char *url, char *device_id, char *imei, char *app_id, char *server_id, char *app_version)
 {
-	LOGD(LOG_TAG, "post", &url);
+	LOGD(LOG_TAG, "url: %s", url);
 
 	CURL *curl;
 	CURLcode res;
-	char post_fields[100];
+	char post_fields[100]="11";
 
 	curl = curl_easy_init();
 	strcat(post_fields, "deviceId=");
@@ -76,10 +76,11 @@ void chttp_post(char *url, char *device_id, char *imei, char *app_id, char *serv
 	strcat(post_fields, "&appVersion=");
 	strcat(post_fields, app_version);
 
+	LOGD(LOG_TAG, "post_fields", post_fields);
+
 	if(curl)
 	{
-//		curl_easy_setopt(curl, CURLOPT_URL, "http://test.tt.device.baidao.com/jry-device/login");
-		curl_easy_setopt(curl, CURLOPT_URL, "http://www.xiami.com/member/login");
+		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
 //        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "username=18668003173&password=111111");

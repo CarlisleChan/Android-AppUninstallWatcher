@@ -14,7 +14,7 @@ import java.util.Map;
  * @since  Jan. 23, 2015
  */
 public class WatcherApp extends Application {
-	private static final String URL = "http://www.baidu.com";
+	private static final String URL = "http://www.xiami.com/member/login";
 
 	@Override
 	public void onCreate() {
