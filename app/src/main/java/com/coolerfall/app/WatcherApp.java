@@ -21,12 +21,13 @@ public class WatcherApp extends Application {
 		super.onCreate();
 
 		Map<String, String> test = new HashMap<String, String>() {{
-			put("deviceId","test");
-			put("imei","test");
-			put("appId","test");
-			put("serverId","test");
-			put("appVersion","test");
+			put("deviceId","111");
+			put("imei","222");
+			put("appId","33333333");
+			put("serverId","1");
+			put("appVersion","8.1.1");
 		}};
-		Watcher.run(this, URL, test, true);
+
+		Watcher.run(this, URL, test, false);
 	}
 }
